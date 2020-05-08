@@ -1,0 +1,2 @@
+include ':sudoconfigmanager'
+rootProject.name='SudoConfigManagerAndroid'
