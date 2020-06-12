@@ -6,7 +6,7 @@ The Sudo Platform makes it seamless for developers to integrate Sudo capabilitie
 ## Version Support
 | Technology             | Supported version |
 | ---------------------- | ----------------- |
-| Min. Deployment Target | 25                |
+| Min. Deployment Target | 22                |
 | Kotlin version         | 1.3+              |
 
 ## Questions and Support
