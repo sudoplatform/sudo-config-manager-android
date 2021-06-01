@@ -1,2 +1,2 @@
-include ':TestApp', ':sudoconfigmanager'
+include ':sudoconfigmanager'
 rootProject.name='SudoConfigManagerAndroid'

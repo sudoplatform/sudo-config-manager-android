@@ -1,0 +1,96 @@
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.source
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+if (project.hasProperty('nexusUsername')) {
+    ext["nexusUsername"] = "$nexusUsername"
+    ext["nexusPassword"] = "$nexusPassword"
+} else {
+    ext["nexusUsername"] = ''
+    ext["nexusPassword"] = ''
+}
+
+nexusStaging {
+    packageGroup = PUBLISH_GROUP_ID
+    stagingProfileId = '14314878e2a1b'
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId PUBLISH_GROUP_ID
+            artifactId PUBLISH_ARTIFACT_ID
+            version PUBLISH_VERSION
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+            artifact androidSourcesJar
+
+            pom {
+                name = PUBLISH_ARTIFACT_ID
+                description = PUBLISH_DESCRIPTION
+                url = PUBLISH_PROJECT_URL
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'anonyome'
+                        name = 'Sudo Platform Engineering'
+                        email = 'sudoplatform-engineering@anonyome.com'
+                    }
+                }
+                scm {
+                    connection = PUBLISH_PROJECT_SCM
+                    developerConnection = PUBLISH_PROJECT_SCM
+                    url = PUBLISH_PROJECT_URL
+                }
+                withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+
+                    project.configurations.implementation.allDependencies.each {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "sonatype"
+
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username nexusUsername
+                password nexusPassword
+            }
+        }
+    }
+}
+
+signing {
+    if (project.hasProperty("signingKey")) {
+        def signingKey = findProperty('signingKey')
+        def signingPassword = findProperty('signingPassword')
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications
+    }
+}
