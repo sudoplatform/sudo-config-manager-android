@@ -250,12 +250,6 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://developer.android.com/jetpack/androidx
-- artifact: androidx.constraintlayout:constraintlayout-solver:+
-  name: Android ConstraintLayout Solver
-  copyrightHolder: Google, Inc.
-  license: The Apache Software License, Version 2.0
-  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
-  url: http://tools.android.com
 - artifact: androidx.appcompat:appcompat:+
   name: Android AppCompat Library
   copyrightHolder: Google, Inc.
@@ -292,3 +286,124 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: http://developer.android.com/tools/extras/support-library.html
+- artifact: androidx.resourceinspection:resourceinspection-annotation:+
+  name: Android Resource Inspection - Annotations
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/jetpack/androidx/releases/resourceinspection#1.0.0
+- artifact: com.amazonaws:aws-android-sdk-core:+
+  name: AWS SDK for Android - Core Runtime
+  copyrightHolder: Amazon
+  license: Apache License, Version 2.0
+  url: http://aws.amazon.com/sdkforandroid
+- artifact: com.amazonaws:aws-android-sdk-kms:+
+  name: AWS SDK for Android - AWS KMS
+  copyrightHolder: Amazon
+  license: Apache License, Version 2.0
+  url: http://aws.amazon.com/sdkforandroid
+- artifact: com.amazonaws:aws-android-sdk-s3:+
+  name: AWS SDK for Android - Amazon S3
+  copyrightHolder: Amazon
+  license: Apache License, Version 2.0
+  url: http://aws.amazon.com/sdkforandroid
+- artifact: androidx.startup:startup-runtime:+
+  name: Android App Startup Runtime
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/jetpack/androidx/releases/startup#1.0.0
+- artifact: org.hamcrest:hamcrest-core:+
+  name: Hamcrest Core
+  copyrightHolder: hamcrest.org
+  license: BSD License
+  url: http://hamcrest.org
+- artifact: junit:junit:+
+  name: JUnit
+  copyrightHolder: JUnit
+  license: Eclipse Public License 1.0
+  licenseUrl: http://www.eclipse.org/legal/epl-v10.html
+  url: http://junit.org
+- artifact: androidx.test.ext:junit:+
+  name: AndroidX Test Library
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/testing
+- artifact: androidx.test.ext:junit-ktx:+
+  name: AndroidX Test Library
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/testing
+- artifact: com.google.code.gson:gson:+
+  name: Gson
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://code.google.com/p/google-gson/
+- artifact: com.google.guava:listenablefuture:+
+  name: Guava ListenableFuture only
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  url: https://github.com/google/guava/blob/master/COPYING
+- artifact: androidx.emoji2:emoji2-views-helper:+
+  name: Android Emoji2 Compat view helpers
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/jetpack/androidx/releases/emoji2#1.0.0
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:+
+  name: kotlinx-coroutines-core
+  copyrightHolder: JetBrains, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/Kotlin/kotlinx.coroutines
+- artifact: androidx.emoji2:emoji2:+
+  name: Android Emoji2 Compat
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/jetpack/androidx/releases/emoji2#1.0.0
+- artifact: androidx.concurrent:concurrent-futures:+
+  name: AndroidX Futures
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/topic/libraries/architecture/index.html
+- artifact: androidx.test:monitor:+
+  name: AndroidX Test Library
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/testing
+- artifact: androidx.lifecycle:lifecycle-process:+
+  name: Android Lifecycle Process
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/jetpack/androidx/releases/lifecycle#2.4.0
+- artifact: org.jetbrains.kotlinx:kotlinx-coroutines-android:+
+  name: kotlinx-coroutines-android
+  copyrightHolder: JetBrains, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/Kotlin/kotlinx.coroutines
+- artifact: org.jetbrains.kotlin:kotlin-stdlib-jdk8:+
+  name: Kotlin Stdlib Jdk8
+  copyrightHolder: JetBrains, Inc.
+  license: The Apache License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://kotlinlang.org/
+- artifact: androidx.constraintlayout:constraintlayout-core:+
+  name: Android ConstraintLayout Core
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: http://tools.android.com
+- artifact: androidx.test:core:+
+  name: AndroidX Test Library
+  copyrightHolder: Google, Inc.
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://developer.android.com/testing
