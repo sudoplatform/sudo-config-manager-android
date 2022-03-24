@@ -292,21 +292,6 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://developer.android.com/jetpack/androidx/releases/resourceinspection#1.0.0
-- artifact: com.amazonaws:aws-android-sdk-core:+
-  name: AWS SDK for Android - Core Runtime
-  copyrightHolder: Amazon
-  license: Apache License, Version 2.0
-  url: http://aws.amazon.com/sdkforandroid
-- artifact: com.amazonaws:aws-android-sdk-kms:+
-  name: AWS SDK for Android - AWS KMS
-  copyrightHolder: Amazon
-  license: Apache License, Version 2.0
-  url: http://aws.amazon.com/sdkforandroid
-- artifact: com.amazonaws:aws-android-sdk-s3:+
-  name: AWS SDK for Android - Amazon S3
-  copyrightHolder: Amazon
-  license: Apache License, Version 2.0
-  url: http://aws.amazon.com/sdkforandroid
 - artifact: androidx.startup:startup-runtime:+
   name: Android App Startup Runtime
   copyrightHolder: Google, Inc.
@@ -407,3 +392,21 @@
   license: The Apache Software License, Version 2.0
   licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
   url: https://developer.android.com/testing
+- artifact: com.amazonaws:aws-android-sdk-s3:+
+  name: AWS SDK for Android - Amazon S3
+  copyrightHolder: Amazon
+  license: Amazon Software License
+  licenseUrl: https://aws.amazon.com/asl/
+  url: https://github.com/aws/aws-sdk-android
+- artifact: com.amazonaws:aws-android-sdk-kms:+
+  name: AWS SDK for Android - AWS KMS
+  copyrightHolder: Amazon
+  license: Amazon Software License
+  licenseUrl: https://aws.amazon.com/asl/
+  url: https://github.com/aws/aws-sdk-android
+- artifact: com.amazonaws:aws-android-sdk-core:+
+  name: AWS SDK for Android - Core Runtime
+  copyrightHolder: Amazon
+  license: Amazon Software License
+  licenseUrl: https://aws.amazon.com/asl/
+  url: https://github.com/aws/aws-sdk-android

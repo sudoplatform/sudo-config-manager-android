@@ -38,7 +38,7 @@ android {
 }
 
 ext {
-    coroutine_version = '1.5.2-native-mt'
+    coroutine_version = '1.6.0-native-mt'
     kotlintest_version = "3.4.2"
 }
 
@@ -56,12 +56,12 @@ dependencies {
     implementation "com.amazonaws:aws-android-sdk-s3:$aws_version"
 
     // Sudo Platform SDKs
-    api 'com.sudoplatform:sudologging:1.1.0'
+    api 'com.sudoplatform:sudologging:1.2.0'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:4.2.0'
     testImplementation 'org.mockito.kotlin:mockito-kotlin:3.2.0'
-    testImplementation 'org.json:json:20211205'
+    testImplementation 'org.json:json:20220320'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
