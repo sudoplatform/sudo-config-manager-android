@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2022 Anonyome Labs, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 package com.sudoplatform.sudoconfigmanager.exceptions
 
 open class SudoConfigManagerException(message: String? = null, cause: Throwable? = null) : RuntimeException(message, cause) {

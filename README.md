@@ -7,7 +7,7 @@ The Sudo Platform makes it seamless for developers to integrate Sudo capabilitie
 | Technology             | Supported version |
 | ---------------------- | ----------------- |
 | Minimum API Level      | 22                |
-| Kotlin version         | 1.3+              |
+| Kotlin version         | 1.6+              |
 
 ## Questions and Support
 File any issues you find on the project's GitHub repository. Be careful not to share any Personally Identifiable Information (PII) or sensitive account information (API keys, credentials, etc.) when reporting an issue.

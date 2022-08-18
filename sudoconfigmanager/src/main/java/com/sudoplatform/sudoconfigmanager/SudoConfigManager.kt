@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2022 Anonyome Labs, Inc. All rights reserved.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 package com.sudoplatform.sudoconfigmanager
 
 import android.content.Context
@@ -71,7 +77,7 @@ interface SudoConfigManager {
 /**
  * Default `SudoConfigManager` implementation
  */
-class DefaultSudoConfigManager(private val context: Context, private val logger: Logger? = null, s3Client: S3Client? = null): SudoConfigManager {
+class DefaultSudoConfigManager(context: Context, private val logger: Logger? = null, s3Client: S3Client? = null): SudoConfigManager {
 
     companion object {
         private const val CONFIG_NAMESPACE_IDENTITY_SERVICE = "identityService"
@@ -104,7 +110,7 @@ class DefaultSudoConfigManager(private val context: Context, private val logger:
 
     override fun getConfigSet(namespace: String): JSONObject? {
         return try {
-            val configSet = config?.get(namespace) as JSONObject?
+            val configSet = config.get(namespace) as JSONObject?
             configSet
         } catch (e: Exception) {
             logger?.info("Namespace: '$namespace' does not exist")
@@ -139,7 +145,7 @@ class DefaultSudoConfigManager(private val context: Context, private val logger:
                             currentVersion,
                             serviceInfo.opt("minVersion") as Int?,
                             serviceInfo.opt("deprecated") as Int?,
-                            if (deprecationGrace != -1L) Date(deprecationGrace.toLong()) else null
+                            if (deprecationGrace != -1L) Date(deprecationGrace) else null
                         )
 
                         // If the service config in `sudoplatformconfig.json` is less than the
