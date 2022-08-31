@@ -86,6 +86,14 @@ class DefaultSudoConfigManager(context: Context, private val logger: Logger? = n
         private const val CONFIG_SERVICE_INFO_BUCKET = "serviceInfoBucket"
     }
 
+    /**
+     * Checksum's for each file are generated and are used to create a checksum that is used when publishing to maven central.
+     * In order to retry a failed publish without needing to change any functionality, we need a way to generate a different checksum
+     * for the source code.  We can change the value of this property which will generate a different checksum for publishing
+     * and allow us to retry.  The value of `version` doesn't need to be kept up-to-date with the version of the code.
+     */
+    val version: String = "3.0.0"
+
     private val config: JSONObject
     private val s3Client: S3Client?
 
