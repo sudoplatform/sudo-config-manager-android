@@ -55,7 +55,7 @@ dependencies {
     implementation "com.amazonaws:aws-android-sdk-s3:$aws_version"
 
     // Sudo Platform SDKs
-    implementation 'com.sudoplatform:sudologging:2.0.1'
+    implementation 'com.sudoplatform:sudologging:2.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:4.7.0'
