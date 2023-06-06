@@ -1,5 +1,5 @@
 task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
+    archiveClassifier.set("sources")
     from android.sourceSets.main.java.source
 }
 
@@ -29,6 +29,8 @@ nexusStaging {
 publishing {
     publications {
         release(MavenPublication) {
+            tasks.named("generateMetadataFileForReleasePublication").configure { dependsOn("androidSourcesJar") }
+
             groupId PUBLISH_GROUP_ID
             artifactId PUBLISH_ARTIFACT_ID
             version PUBLISH_VERSION

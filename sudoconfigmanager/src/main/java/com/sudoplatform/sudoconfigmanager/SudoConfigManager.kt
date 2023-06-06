@@ -92,7 +92,7 @@ class DefaultSudoConfigManager(context: Context, private val logger: Logger? = n
      * for the source code.  We can change the value of this property which will generate a different checksum for publishing
      * and allow us to retry.  The value of `version` doesn't need to be kept up-to-date with the version of the code.
      */
-    val version: String = "4.0.0"
+    val version: String = "5.0.0"
 
     private val config: JSONObject
     private val s3Client: S3Client?

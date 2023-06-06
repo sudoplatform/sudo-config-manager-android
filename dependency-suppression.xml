@@ -53,4 +53,18 @@
    <packageUrl regex="true">^pkg:maven/com\.fasterxml\.woodstox/woodstox-core@.*$</packageUrl>
    <cve>CVE-2022-40152</cve>
 </suppress>
+<suppress until="2023-07-31">
+   <notes><![CDATA[
+   file name: kotlin-analysis-intellij-1.8.10.jar (shaded: com.google.guava:guava:31.0.1-jre)
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/com\.google\.guava/guava@.*$</packageUrl>
+   <vulnerabilityName>CVE-2023-2976</vulnerabilityName>
+</suppress>
+<suppress until="2023-07-31">
+   <notes><![CDATA[
+   file name: kotlin-analysis-intellij-1.8.10.jar (shaded: com.google.guava:guava:31.0.1-jre)
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/com\.google\.guava/guava@.*$</packageUrl>
+   <vulnerabilityName>CVE-2020-8908</vulnerabilityName>
+</suppress>
 </suppressions>

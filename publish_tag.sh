@@ -36,6 +36,10 @@ NC='\033[0m' # No Color
 export GIT_COMMITTER_NAME="Sudo Platform Engineering"
 export GIT_COMMITTER_EMAIL="sudoplatform-engineering@anonyome.com"
 
+export GRADLEW="./gradlew -Dorg.gradle.java.home=$JAVA_HOME"
+
+echo "Using gradle command: $GRADLEW"
+
 abort() {
   announce "${RED}$* -- aborting"
   exit 1
@@ -72,9 +76,9 @@ create_github_release() {
 }
 
 create_external_maven_release() {
-  ./gradlew ${MODULE_NAME}:assembleRelease
-  ./gradlew -Dorg.gradle.internal.publish.checksums.insecure=true -Ptag=${TAG} -PnexusUsername=${OSSRH_USERNAME} -PnexusPassword=${OSSRH_PASSWORD} ${MODULE_NAME}:publishReleasePublicationToSonatypeRepository
-  ./gradlew -PnexusUsername=${OSSRH_USERNAME} -PnexusPassword=${OSSRH_PASSWORD} closeAndReleaseRepository
+  $GRADLEW ${MODULE_NAME}:assembleRelease
+  $GRADLEW -Dorg.gradle.internal.publish.checksums.insecure=true -Ptag=${TAG} -PnexusUsername=${OSSRH_USERNAME} -PnexusPassword=${OSSRH_PASSWORD} ${MODULE_NAME}:publishReleasePublicationToSonatypeRepository
+  $GRADLEW -PnexusUsername=${OSSRH_USERNAME} -PnexusPassword=${OSSRH_PASSWORD} closeAndReleaseRepository
 }
 
 announce "Retrieving release notes"
