@@ -10,10 +10,10 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        minSdkVersion 24
+        minSdkVersion 26
         targetSdkVersion 31
         versionCode 1
-        versionName "5.0.0"
+        versionName "6.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -65,7 +65,7 @@ dependencies {
     implementation "com.amazonaws:aws-android-sdk-s3:$aws_version"
 
     // Sudo Platform SDKs
-    implementation 'com.sudoplatform:sudologging:2.1.0'
+    implementation 'com.sudoplatform:sudologging:3.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:4.7.0'
