@@ -7,13 +7,13 @@ apply plugin: "org.owasp.dependencycheck"
 android {
     namespace 'com.sudoplatform.sudoconfigmanager'
 
-    compileSdkVersion 31
+    compileSdk 34
 
     defaultConfig {
         minSdkVersion 26
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
-        versionName "6.0.0"
+        versionName "7.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -27,11 +27,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     testOptions {
@@ -65,11 +65,11 @@ dependencies {
     implementation "com.amazonaws:aws-android-sdk-s3:$aws_version"
 
     // Sudo Platform SDKs
-    implementation 'com.sudoplatform:sudologging:3.0.0'
+    implementation 'com.sudoplatform:sudologging:4.0.0'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:4.7.0'
-    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.1.0'
+    testImplementation 'org.mockito:mockito-core:5.5.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.1.0'
     testImplementation 'org.json:json:20230227'
     androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.5'
     androidTestImplementation 'androidx.test:runner:1.5.2'
@@ -156,6 +156,14 @@ task checkLicenseHaveRequiredFields {
 }
 checkLicenses.finalizedBy checkLicenseHaveRequiredFields
 
+// Kotlin Lint
+apply plugin: 'org.jmailen.kotlinter'
+
+kotlinter {
+    ignoreFailures = false
+    reporters = ['checkstyle', 'plain']
+}
+
 dokkaHtml {
     outputDirectory.set(project.file("$buildDir/javadoc"))
 
@@ -165,6 +173,14 @@ dokkaHtml {
             skipEmptyPackages.set(true)
         }
     }
+}
+
+// Sonarqube code analysis
+if (project.file("${rootProject.projectDir}/util/sonarqube.gradle").exists()) {
+    ext.sonarProjectKey = "sudo-config-manager-android"
+    ext.sonarProjectName = "sudo-config-manager-android"
+    ext.sonarExclusions = ["*.png", "*.jks", "*.json", "*.key"]
+    apply from: "${rootProject.projectDir}/util/sonarqube.gradle"
 }
 
 ext {

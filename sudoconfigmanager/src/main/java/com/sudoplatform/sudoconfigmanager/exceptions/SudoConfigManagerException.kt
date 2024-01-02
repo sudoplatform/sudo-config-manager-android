@@ -18,5 +18,4 @@ open class SudoConfigManagerException(message: String? = null, cause: Throwable?
      */
     class InvalidConfigException(message: String? = null, cause: Throwable? = null) :
         SudoConfigManagerException(message = message, cause = cause)
-
 }

@@ -30,7 +30,7 @@ data class ServiceCompatibilityInfo(
     val configVersion: Int,
     val minSupportedVersion: Int?,
     val deprecatedVersion: Int?,
-    val deprecationGrace: Date?
+    val deprecationGrace: Date?,
 ) : Serializable
 
 /**
@@ -45,7 +45,7 @@ data class ServiceCompatibilityInfo(
  */
 data class ValidationResult(
     val incompatible: List<ServiceCompatibilityInfo>,
-    val deprecated: List<ServiceCompatibilityInfo>
+    val deprecated: List<ServiceCompatibilityInfo>,
 )
 
 /**
@@ -77,7 +77,7 @@ interface SudoConfigManager {
 /**
  * Default `SudoConfigManager` implementation
  */
-class DefaultSudoConfigManager(context: Context, private val logger: Logger? = null, s3Client: S3Client? = null): SudoConfigManager {
+class DefaultSudoConfigManager(context: Context, private val logger: Logger? = null, s3Client: S3Client? = null) : SudoConfigManager {
 
     companion object {
         private const val CONFIG_NAMESPACE_IDENTITY_SERVICE = "identityService"
@@ -92,7 +92,7 @@ class DefaultSudoConfigManager(context: Context, private val logger: Logger? = n
      * for the source code.  We can change the value of this property which will generate a different checksum for publishing
      * and allow us to retry.  The value of `version` doesn't need to be kept up-to-date with the version of the code.
      */
-    val version: String = "6.0.0"
+    val version: String = "7.0.2"
 
     private val config: JSONObject
     private val s3Client: S3Client?
@@ -110,10 +110,11 @@ class DefaultSudoConfigManager(context: Context, private val logger: Logger? = n
         val region = identityServiceConfig?.opt(CONFIG_REGION) as String?
         val serviceInfoBucket = identityServiceConfig?.opt(CONFIG_SERVICE_INFO_BUCKET) as String?
 
-
-        if(identityServiceConfig != null && region != null && serviceInfoBucket != null) {
+        if (identityServiceConfig != null && region != null && serviceInfoBucket != null) {
             this.s3Client = s3Client ?: DefaultS3Client(region, serviceInfoBucket, this.logger)
-        } else this.s3Client = null
+        } else {
+            this.s3Client = null
+        }
     }
 
     override fun getConfigSet(namespace: String): JSONObject? {
@@ -130,9 +131,9 @@ class DefaultSudoConfigManager(context: Context, private val logger: Logger? = n
         this.logger?.info("Validating client configuration against backend.")
 
         val incompatible = mutableListOf<ServiceCompatibilityInfo>()
-        val deprecated =  mutableListOf<ServiceCompatibilityInfo>()
+        val deprecated = mutableListOf<ServiceCompatibilityInfo>()
 
-        if(this.s3Client != null) {
+        if (this.s3Client != null) {
             val keys = this.s3Client.listObjects()
 
             // Only fetch the service info docs for the services that are present in client config
@@ -145,7 +146,7 @@ class DefaultSudoConfigManager(context: Context, private val logger: Logger? = n
                 if (serviceName != null) {
                     val serviceInfo = jsonObject.optJSONObject(serviceName)
                     val serviceConfig = this.config.optJSONObject(serviceName)
-                    if(serviceInfo != null && serviceConfig != null) {
+                    if (serviceInfo != null && serviceConfig != null) {
                         val currentVersion = serviceConfig.opt("version") as Int? ?: 1
                         val deprecationGrace = serviceInfo.optLong("deprecationGrace", -1L)
                         val compatibilityInfo = ServiceCompatibilityInfo(
@@ -153,18 +154,18 @@ class DefaultSudoConfigManager(context: Context, private val logger: Logger? = n
                             currentVersion,
                             serviceInfo.opt("minVersion") as Int?,
                             serviceInfo.opt("deprecated") as Int?,
-                            if (deprecationGrace != -1L) Date(deprecationGrace) else null
+                            if (deprecationGrace != -1L) Date(deprecationGrace) else null,
                         )
 
                         // If the service config in `sudoplatformconfig.json` is less than the
                         // minimum supported version then the client is incompatible.
-                        if(currentVersion < (compatibilityInfo.minSupportedVersion ?: 0)) {
+                        if (currentVersion < (compatibilityInfo.minSupportedVersion ?: 0)) {
                             incompatible.add(compatibilityInfo)
                         }
 
                         // If the service config is less than or equal to the deprecated version
                         // then it will be made incompatible after the deprecation grace.
-                        if(currentVersion <= (compatibilityInfo.deprecatedVersion ?: 0)) {
+                        if (currentVersion <= (compatibilityInfo.deprecatedVersion ?: 0)) {
                             deprecated.add(compatibilityInfo)
                         }
                     }

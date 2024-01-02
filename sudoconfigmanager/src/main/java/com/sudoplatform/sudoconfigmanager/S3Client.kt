@@ -43,7 +43,6 @@ interface S3Client {
      * @return list of object keys.
      */
     suspend fun listObjects(): List<String>
-
 }
 
 /**
@@ -52,16 +51,16 @@ interface S3Client {
  * @param region AWS region.
  * @param bucket S3 bucket.
  */
-class DefaultS3Client (
+class DefaultS3Client(
     override val region: String,
     override val bucket: String,
     private val logger: Logger?,
-): S3Client {
+) : S3Client {
 
     private val amazonS3Client: AmazonS3Client = AmazonS3Client(AnonymousAWSCredentials(), Region.getRegion(region))
 
     override suspend fun getObject(key: String): ByteArray {
-        this.logger?.info("Retrieving S3 object: bucket=${this.bucket}, key=${key}")
+        this.logger?.info("Retrieving S3 object: bucket=${this.bucket}, key=$key")
         val obj: S3Object = this.amazonS3Client.getObject(this.bucket, key)
         return obj.objectContent.readBytes()
     }
