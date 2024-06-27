@@ -11,9 +11,9 @@ android {
 
     defaultConfig {
         minSdkVersion 26
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode 1
-        versionName "7.0.2"
+        versionName "8.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -48,7 +48,7 @@ android {
 }
 
 ext {
-    coroutine_version = '1.6.4'
+    coroutine_version = '1.8.1'
     kotlintest_version = "3.4.2"
 }
 
@@ -62,20 +62,20 @@ dependencies {
     // AWS SDKs do not follow semantic versioning rules so we need to strictly specify AWS SDK versions.
     // Follow the process at https://anonyome.atlassian.net/wiki/spaces/PLA/pages/840073287/AWS+Android+SDK+versions+to+use+for+platform+SDKs
     // for updating AWS SDK versions.
-    implementation "com.amazonaws:aws-android-sdk-s3:$aws_version"
+    implementation "com.amazonaws:aws-android-sdk-s3:$aws_version!!"
 
     // Sudo Platform SDKs
-    implementation 'com.sudoplatform:sudologging:4.0.0'
+    implementation 'com.sudoplatform:sudologging:5.0.0'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:5.5.0'
-    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.1.0'
-    testImplementation 'org.json:json:20230227'
-    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.5'
-    androidTestImplementation 'androidx.test:runner:1.5.2'
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:5.3.1'
+    testImplementation 'org.json:json:20240303'
+    androidTestImplementation 'androidx.test.ext:junit-ktx:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.1'
 }
 
-task sourcesJar(type: Jar) {
+tasks.register("sourcesJar", Jar) {
     archiveClassifier.set("sources")
     from android.sourceSets.main.java.srcDirs
 }
@@ -131,7 +131,7 @@ licenseTools {
 @Grab('org.yaml:snakeyaml:1.17') // Yaml parser
 import org.yaml.snakeyaml.Yaml
 
-task checkLicenseHaveRequiredFields {
+tasks.register("checkLicenseHaveRequiredFields") {
     description = "Check every license entry has the mandatory fields"
     group = "verification"
     doLast {
