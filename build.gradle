@@ -19,7 +19,7 @@ buildscript {
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
         classpath "org.owasp:dependency-check-gradle:8.2.1"
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:4.0.0.2929"
-        classpath "com.cookpad.android.licensetools:license-tools-plugin:1.7.0"
+        classpath "gradle.plugin.com.cookpad.android.plugin:plugin:1.2.8"
     }
 }
 
@@ -48,6 +48,7 @@ if (project.findProperty("tag") && sonatypeStagingProfileId) {
     nexusPublishing {
         repositories {
             sonatype {
+                nexusUrl.set(uri("https://ossrh-staging-api.central.sonatype.com/service/local/"))
                 stagingProfileId = sonatypeStagingProfileId
 
                 username = nexusUsername
